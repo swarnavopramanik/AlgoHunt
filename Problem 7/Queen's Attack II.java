@@ -2,6 +2,8 @@ Question Link 👇
 
   https://www.hackerrank.com/contests/algohunt/challenges/queens-attack-2
 
+// Solution 
+
 public class Solution {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
