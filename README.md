@@ -2,8 +2,8 @@
 <h1 align="center"> AlgoHunt HackerRank Contest  </h1>
 
 <h4 align="center"> HackerRank ID @swarnavo_1701 </h4>
+<h3 align="center"> 1st Rank  </h3>
 
-  
 ## 📷 My Contest Rank ⭐👇
 
 ![Screenshot (575)](https://github.com/swarnavopramanik/AlgoHunt/assets/105142693/c4e77bdf-982a-4386-bbd8-946596e3d1de)
