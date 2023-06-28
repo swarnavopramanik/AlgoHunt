@@ -31,8 +31,6 @@ The third line contains , the number of letters to rotate the alphabet by.
 
 Constraints
 
-
-
  is a valid ASCII string without any spaces.
 
 Sample Input
