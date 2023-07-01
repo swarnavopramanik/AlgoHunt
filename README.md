@@ -15,4 +15,5 @@
 
 ## 📷 My Certificate ⭐👇
 
+![afe69f36-0a09-494e-8a62-eb3f3d4c5ae9](https://github.com/swarnavopramanik/AlgoHunt/assets/105142693/e7112c2a-b073-414f-9e44-73800dc12738)
 ![46124a7e-42d4-495c-9376-565650922e54](https://github.com/swarnavopramanik/AlgoHunt/assets/105142693/cfea30be-5b69-4f03-a955-da0722af1fc8)
