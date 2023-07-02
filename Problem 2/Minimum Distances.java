@@ -6,22 +6,27 @@ Question Link 👇
   // Solution 
 
   public class Solution {
-    public static void main(String[] args) throws IOException {
-        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
 
-        int n = Integer.parseInt(bufferedReader.readLine().trim());
-
-        List<Integer> a = Stream.of(bufferedReader.readLine().replaceAll("\\s+$", "").split(" "))
-            .map(Integer::parseInt)
-            .collect(toList());
-
-        int result = Result.minimumDistances(a);
-
-        bufferedWriter.write(String.valueOf(result));
-        bufferedWriter.newLine();
-
-        bufferedReader.close();
-        bufferedWriter.close();
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int n = in.nextInt();
+        int a[] = new int[n];
+        for(int i=0; i < n; i++){
+            a[i] = in.nextInt();
+        }
+        int min = Integer.MAX_VALUE;
+        for (int i = 0; i < n; i++) {
+            for (int j = i+1; j < n; j++) {
+                if (a[i] == a[j]) {
+                    int temp = j - i;
+                    if (temp < min) {
+                        min = temp;
+                    }
+                }
+            }
+        }
+        if (min == Integer.MAX_VALUE)
+            min = -1;
+        System.out.println(min);
     }
 }
