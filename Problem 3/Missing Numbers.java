@@ -7,35 +7,62 @@ Question Link 👇
 // Solution 
 
   
+import java.io.*;
+import java.util.*;
+
 public class Solution {
-    public static void main(String[] args) throws IOException {
-        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int n = in.nextInt();
+        int[] A = new int[n];
 
-        int n = Integer.parseInt(bufferedReader.readLine().trim());
+        for (int i = 0; i < n; i++) {
+            A[i] = in.nextInt();
+        }
 
-        List<Integer> arr = Stream.of(bufferedReader.readLine().replaceAll("\\s+$", "").split(" "))
-            .map(Integer::parseInt)
-            .collect(toList());
+        int m = in.nextInt();
+        int[] B = new int[m];
 
-        int m = Integer.parseInt(bufferedReader.readLine().trim());
+        for (int i = 0; i < m; i++) {
+            B[i] = in.nextInt();
+        }
 
-        List<Integer> brr = Stream.of(bufferedReader.readLine().replaceAll("\\s+$", "").split(" "))
-            .map(Integer::parseInt)
-            .collect(toList());
+        HashMap<Integer, Integer> freqs = new HashMap<Integer, Integer>();
 
-        List<Integer> result = Result.missingNumbers(arr, brr);
+        for (int i = 0; i < m; i++) {
+            if (freqs.containsKey(B[i])) {
+                int freq = freqs.get(B[i]);
+                freqs.replace(B[i], freq + 1);
+            } else {
+                freqs.put(B[i], 1);
+            }
+        }
 
-        bufferedWriter.write(
-            result.stream()
-                .map(Object::toString)
-                .collect(joining(" "))
-            + "\n"
-        );
+        for (int i = 0; i < n; i++) {
+            if (freqs.containsKey(A[i])) {
+                int freq = freqs.get(A[i]);
+                if (freq == 1) {
+                    freqs.remove(A[i]);
+                } else {
+                    freqs.replace(A[i], freq - 1);
+                }
+            } else {
+                System.out.println("error");
+            }
+        }
 
-        bufferedReader.close();
-        bufferedWriter.close();
+        StringBuilder answer = new StringBuilder();
+        Iterator it = freqs.entrySet().iterator();
+        while (it.hasNext()) {
+            Map.Entry pair = (Map.Entry)it.next();
+            answer.append(pair.getKey());
+            answer.append(" ");
+        }
+
+        System.out.println(answer.toString());
     }
 }
+
+
 
   
