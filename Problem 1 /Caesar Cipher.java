@@ -5,23 +5,26 @@ Question Link 👇
 
   // Solution 
 
-  public class Solution {
-    public static void main(String[] args) throws IOException {
-        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
+  
+public class Solution {
 
-        int n = Integer.parseInt(bufferedReader.readLine().trim());
-
-        String s = bufferedReader.readLine();
-
-        int k = Integer.parseInt(bufferedReader.readLine().trim());
-
-        String result = Result.caesarCipher(s, k);
-
-        bufferedWriter.write(result);
-        bufferedWriter.newLine();
-
-        bufferedReader.close();
-        bufferedWriter.close();
+    public static void main(String[] args) {
+        Scanner s = new Scanner(System.in);
+        int len = s.nextInt(); s.nextLine();
+        String str = s.nextLine();
+        int shift = s.nextInt();
+        
+        char sarr[] = str.toCharArray();
+        for (int i=0; i<sarr.length; i++) {
+            sarr[i] = cryptIt(sarr[i], shift);
+        }
+        System.out.println(new String(sarr));
+    }
+    
+    public static char cryptIt(char c, int shift) {
+        if (!Character.isAlphabetic(c)) return c;
+        char base = 'A';
+        if (c >= 'a') base = 'a';
+        return (char)(((c - base + shift) % 26) + base);
     }
 }
