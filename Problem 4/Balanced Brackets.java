@@ -5,29 +5,61 @@ Question Link 👇
 
   // Solution 
 
-  public class Solution {
-    public static void main(String[] args) throws IOException {
-        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
+  
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
 
-        int t = Integer.parseInt(bufferedReader.readLine().trim());
+public class Solution {
 
-        IntStream.range(0, t).forEach(tItr -> {
-            try {
-                String s = bufferedReader.readLine();
-
-                String result = Result.isBalanced(s);
-
-                bufferedWriter.write(result);
-                bufferedWriter.newLine();
-            } catch (IOException ex) {
-                throw new RuntimeException(ex);
+    public static void main(String[] args) {
+     
+        Scanner in = new Scanner(System.in);
+        int n = in.nextInt();
+        //int arr[] = new int[n];
+        for(int arr_i=0; arr_i < n; arr_i++){
+            Stack st = new Stack();
+            //arr[arr_i] = in.nextInt();
+            String ipSeq = in.next();
+            //System.out.println(ipSeq);
+            boolean match = true;
+            for(int ind=0; ind<ipSeq.length(); ind++){
+                char ch = ipSeq.charAt(ind);
+                if(ch=='(' || ch=='{' || ch=='['){
+                    st.push(ch);
+                }else if(st.isEmpty()){
+                    match = false;
+                    break;
+                }else if(ch==')'){
+                    if('('!=(char)st.pop()){
+                        match = false;
+                        break;
+                    }
+                }else if(ch=='}'){
+                    if('{'!=(char)st.pop()){
+                        match = false;
+                        break;
+                    }
+                }else if(ch==']'){
+                    if('['!=(char)st.pop()){
+                        match = false;
+                        break;
+                    }
+                }
             }
-        });
 
-        bufferedReader.close();
-        bufferedWriter.close();
+            if(match){
+                if(!st.isEmpty()){
+                    System.out.println("NO");
+                }else{
+                    System.out.println("YES");
+                }
+            }else{
+                System.out.println("NO");
+            }
+        }
     }
 }
-
-  
+            
