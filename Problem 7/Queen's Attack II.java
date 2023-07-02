@@ -4,43 +4,33 @@ Question Link 👇
 
 // Solution 
 
-public class Solution {
-    public static void main(String[] args) throws IOException {
-        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
+import java.util.*;
 
-        String[] firstMultipleInput = bufferedReader.readLine().replaceAll("\\s+$", "").split(" ");
-
-        int n = Integer.parseInt(firstMultipleInput[0]);
-
-        int k = Integer.parseInt(firstMultipleInput[1]);
-
-        String[] secondMultipleInput = bufferedReader.readLine().replaceAll("\\s+$", "").split(" ");
-
-        int r_q = Integer.parseInt(secondMultipleInput[0]);
-
-        int c_q = Integer.parseInt(secondMultipleInput[1]);
-
-        List<List<Integer>> obstacles = new ArrayList<>();
-
-        IntStream.range(0, k).forEach(i -> {
-            try {
-                obstacles.add(
-                    Stream.of(bufferedReader.readLine().replaceAll("\\s+$", "").split(" "))
-                        .map(Integer::parseInt)
-                        .collect(toList())
-                );
-            } catch (IOException ex) {
-                throw new RuntimeException(ex);
-            }
-        });
-
-        int result = Result.queensAttack(n, k, r_q, c_q, obstacles);
-
-        bufferedWriter.write(String.valueOf(result));
-        bufferedWriter.newLine();
-
-        bufferedReader.close();
-        bufferedWriter.close();
+public final class Solution {
+  public static final void main(String[] args) {
+    int n, rq, cq;
+    Set<Long> o;
+    try (Scanner in = new Scanner(System.in)) {
+      n = in.nextInt();
+      int k = in.nextInt();
+      rq = in.nextInt();
+      cq = in.nextInt();
+      o = new HashSet<>(k);
+      while (k --> 0) {
+        int ro = in.nextInt(), co = in.nextInt();
+        o.add((long)ro << 32 | co);
+      }
     }
+    int t = 0;
+    for (int d[] : new int[][] {{-1, -1}, {-1,  0}, {-1, +1},
+                                { 0, -1},           { 0, +1},
+                                {+1, -1}, {+1,  0}, {+1, +1}}) {
+      for (int r = rq + d[0], c = cq + d[1];
+           1 <= r && r <= n && 1 <= c && c <= n && !o.contains((long)r << 32 | c);
+           r += d[0], c += d[1]) {
+        t++;
+      }
+    }
+    System.out.println(t);
+  }
 }
